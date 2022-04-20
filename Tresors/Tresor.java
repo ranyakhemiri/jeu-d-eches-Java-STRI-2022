@@ -31,3 +31,4 @@ public class Tresor {
         return this.nature;
     }
 }
+

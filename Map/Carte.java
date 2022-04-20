@@ -9,7 +9,7 @@ public Carte(Case[][] cases) {
 	this.cases = cases;
 }
 
-/* fonction qui retourne si la case[x][y] est occupée*/
+/* fonction qui retourne si la case[x][y] est occupï¿½e*/
 public boolean case_ocupee(int x,int y) {
 	return cases[x][y].occupant();
 }

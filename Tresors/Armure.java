@@ -3,6 +3,7 @@ package Tresors;
 public class Armure{
     private String nom;
 	private int protection;
+	
 	public Armure(String nom, int protection) {
 		super();
 		this.nom = nom;
