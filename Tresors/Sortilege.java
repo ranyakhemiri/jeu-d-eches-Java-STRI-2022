@@ -1,5 +1,6 @@
 package Tresors;
 
+<<<<<<< Updated upstream
 import Personnages.Fee;
 import Personnages.Sorciere;
 
@@ -18,4 +19,9 @@ public class Sortilege extends Tresor{
         texte += f.subirAttaque (this.degats);
         return texte;
     }
+=======
+public class Sortilege{
+    private String nom;
+    private 
+>>>>>>> Stashed changes
 }

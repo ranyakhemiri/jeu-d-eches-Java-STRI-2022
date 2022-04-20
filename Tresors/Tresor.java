@@ -1,5 +1,6 @@
 package Tresors;
 
+<<<<<<< Updated upstream
 import Personnages.EtreVivant;
 
 public class Tresor {
@@ -31,4 +32,8 @@ public class Tresor {
         return this.nature;
     }
 
+=======
+public enum Tresor {
+	Arme,Armure,Sortilege;
+>>>>>>> Stashed changes
 }
