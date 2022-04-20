@@ -3,13 +3,8 @@ import Tresors.Tresor;
 
 public abstract class EtreVivant {
     protected String nom;
-<<<<<<< Updated upstream
-    public int point_vie;
-=======
     private int vie;
-    private Tresor equipement;
->>>>>>> Stashed changes
-    
+    private Tresor equipement;    
     public EtreVivant(String nom, int vie, Tresor equipement) {
 		super();
 		this.nom = nom;
@@ -21,11 +16,10 @@ public abstract class EtreVivant {
         return this.nom;
         //car c'est un attribut "protected"
     }
-<<<<<<< Updated upstream
 
     //méthode abstraite: on oblige les classes Sorcieres et Fee à coder cette méthode qui est differente selon l'etre vivant
     public abstract String subirAttaque (int nb_degats);
-=======
+
 	public Tresor getEquipement() {
 		return equipement;
 	}
@@ -39,5 +33,4 @@ public abstract class EtreVivant {
     public void combat(EtreVivant ennemi) {
     	
     }
->>>>>>> Stashed changes
 }

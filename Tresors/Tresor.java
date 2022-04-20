@@ -1,6 +1,5 @@
 package Tresors;
 
-<<<<<<< Updated upstream
 import Personnages.EtreVivant;
 
 public class Tresor {
@@ -31,9 +30,4 @@ public class Tresor {
         //renvoie la nature du trésor baguette magique ou sortilege
         return this.nature;
     }
-
-=======
-public enum Tresor {
-	Arme,Armure,Sortilege;
->>>>>>> Stashed changes
 }

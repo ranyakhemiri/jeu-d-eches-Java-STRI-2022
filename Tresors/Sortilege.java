@@ -1,6 +1,5 @@
 package Tresors;
 
-<<<<<<< Updated upstream
 import Personnages.Fee;
 import Personnages.Sorciere;
 
@@ -14,14 +13,9 @@ public class Sortilege extends Tresor{
     }
 
     public String attaque (Fee f){
-        String texte='';
-        texte= this.proprio.getNom()+" attaque la fée "+f.getNom()+" avec son sortilège."
+        String texte="";
+        texte= this.proprio.getNom()+" attaque la fée "+f.getNom()+" avec son sortilège.";
         texte += f.subirAttaque (this.degats);
         return texte;
     }
-=======
-public class Sortilege{
-    private String nom;
-    private 
->>>>>>> Stashed changes
 }
