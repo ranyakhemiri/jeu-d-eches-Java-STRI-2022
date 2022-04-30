@@ -5,14 +5,12 @@ import Personnages.EtreVivant;
 public class Tresor {
     protected EtreVivant proprio;
     protected String nature;
-    //peut être un sortilege pour les sorcières ou une baguette magique pour les fées
-    protected int degats; 
-    //varient selon la nature du trésor
+    //peut etre un sortilege pour les sorcieres ou une baguette magique pour les fees, ou bien une armure pour les deux
+ 
 
-    public Tresor(String nature, int degats){
-        //intialisation du trésor 
+    public Tresor(String nature){
+        //intialisation du tresor 
         this.nature=nature;
-        this.degats=degats;
     }
 
     public void setProprio (EtreVivant e){

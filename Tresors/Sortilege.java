@@ -6,10 +6,11 @@ import Personnages.Sorciere;
 public class Sortilege extends Tresor{
     //pour imposer le type du propriétaire
         protected Sorciere proprio;
+        public int degats;
 
     public Sortilege(){
-        super("sortilege",30);
-        //le sortilege diminue de 30pts la vie d'une fée attaquée
+        super("sortilege");
+        this.degats=1;
     }
 
     public String attaque (Fee f){

@@ -1,16 +1,15 @@
 package Tresors;
 
-public class Armure{
-    private String nom;
-	private int protection;
+public class Armure extends Tresor {
+	private int protection; //entre 1 et 3 points
 	
-	public Armure(String nom, int protection) {
-		super();
-		this.nom = nom;
+	public Armure(int protection) {
+		super("armure");
 		this.protection = protection;
 	}
-	public String getNom() {
-		return nom;
+	
+	public String getNature() {
+		return nature;
 	}
 	public int getProtection() {
 		return protection;

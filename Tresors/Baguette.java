@@ -1,17 +1,20 @@
 package Tresors;
 
-import Personnages.Sorciere;
+import Personnages.Fee;
 
 public class Baguette extends Tresor{
-    protected Sorciere proprio;
+    protected Fee proprio;
+    public int degats;
 
     public Baguette(){
-        super("baguette",40);
-        //la baguette magique diminue de 40pts la vie d'une sorcière attaquée
+        super("baguette");
+        this.degats=2;
     }
-    public String attaque (Sorciere s){
+
+
+    public String attaque (Fee s){
         String texte="";
-        texte= this.proprio.getNom()+" attaque la la sorcière "+s.getNom()+" avec sa baguette magique.";
+        texte= this.proprio.getNom()+" attaque la sorciere "+s.getNom()+" avec sa baguette magique.";
         texte += s.subirAttaque (this.degats);
         return texte;
     }
