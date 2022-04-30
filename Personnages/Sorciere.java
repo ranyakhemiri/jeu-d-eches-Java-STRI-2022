@@ -1,7 +1,9 @@
 package Personnages;
+import Tresors.Sortilege;
 
 public class Sorciere extends EtreVivant{
-
+	private Sortilege sortilege;
+	
     public Sorciere(String nom){
         super(nom);
         //les points de vie sont initialisés à 90pts 

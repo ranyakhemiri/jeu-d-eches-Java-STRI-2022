@@ -1,18 +1,19 @@
 package Personnages;
+import Tresors.Baguette;
 
 public class Fee extends EtreVivant {
-    private int baguette; //baguettes magiques, par défaut =1
-
+    private Baguette baguette; //baguettes magiques, par défaut =1
+    private int nbBaguettes;
+    
     Fee(String nom){
         super(nom);
-        this.baguette=1; //initialisation par defaut
         //les points de vie sont initialisés à 100pts 
         this.point_vie=100;
     }
 
 
     public int getNbBaguettes (){
-        return this.baguette;
+        return this.nbBaguettes;
     }
 
 	@Override

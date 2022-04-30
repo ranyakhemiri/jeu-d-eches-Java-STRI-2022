@@ -8,7 +8,7 @@ public class Protagoniste {
     public int yp;
     public int x;
     public int y;
-    boolean isnice;
+    private boolean isnice;
     LinkedList<Protagoniste> ps;
     public String name;
    
