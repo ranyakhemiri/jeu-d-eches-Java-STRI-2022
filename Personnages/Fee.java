@@ -10,9 +10,6 @@ public class Fee extends EtreVivant {
         this.point_vie=100;
     }
 
-    public String getNom (){
-        return super.getNom();
-    }
 
     public int getNbBaguettes (){
         return this.baguette;

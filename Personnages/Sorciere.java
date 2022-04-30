@@ -8,9 +8,6 @@ public class Sorciere extends EtreVivant{
         point_vie=90;
     }
 
-    public String getNom (){
-        return super.getNom();
-    }
 
 	@Override
 	public String subirAttaque(int nb_degats) {
