@@ -4,7 +4,6 @@ import Personnages.Fee;
 import Personnages.Sorciere;
 
 public class Sortilege extends Tresor{
-    //pour imposer le type du propriétaire
         protected Sorciere proprio;
         public int degats;
 

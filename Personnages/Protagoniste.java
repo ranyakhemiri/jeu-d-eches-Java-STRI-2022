@@ -37,6 +37,7 @@ public abstract class Protagoniste {
    }
 
    public abstract String subirAttaque (int nb_degats);
+   public abstract void gagnerTresor(Tresor t);
 
    public Tresor getEquipement() {
     return equipement;

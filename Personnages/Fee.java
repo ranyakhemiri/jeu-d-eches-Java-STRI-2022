@@ -1,9 +1,11 @@
 package Personnages;
 import Tresors.Pouvoir;
+import Tresors.Tresor;
 
 public class Fee extends Protagoniste {
     private Pouvoir pouvoir; //baguettes magiques, par défaut =1
-    private int nbBaguettes;
+    public int nbPouvoirs;
+
 
     
    public Fee(String nom){
@@ -13,8 +15,8 @@ public class Fee extends Protagoniste {
     }
 
 
-    public int getNbBaguettes (){
-        return this.nbBaguettes;
+    public int getNbPouvoirs (){
+        return this.nbPouvoirs;
     }
 
 	@Override
@@ -22,4 +24,17 @@ public class Fee extends Protagoniste {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+    @Override
+    public void gagnerTresor(Tresor t) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    
+
+
+	
+
 }

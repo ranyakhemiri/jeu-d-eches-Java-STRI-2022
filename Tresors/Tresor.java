@@ -1,11 +1,11 @@
 package Tresors;
 
-import Personnages.EtreVivant;
+import Personnages.Protagoniste;
 
 public class Tresor {
-    protected EtreVivant proprio;
-    protected String nature;
-    //peut etre un sortilege pour les sorcieres ou une baguette magique pour les fees, ou bien une armure pour les deux
+    protected Protagoniste proprio;
+    protected String nature ;
+    //peut etre un sortilege pour les sorcieres ou un pouvoir magique pour les fees, ou bien une armure pour les deux
  
 
     public Tresor(String nature){
@@ -13,12 +13,12 @@ public class Tresor {
         this.nature=nature;
     }
 
-    public void setProprio (EtreVivant e){
+    public void setProprio (Protagoniste e){
         //le trésor est attribué à un protagoniste
         this.proprio=e;
     }
 
-    public EtreVivant getProprio(){
+    public Protagoniste getProprio(){
         //retourne le propriétaire de l'arme
         return this.proprio;
         //car cet attribut n'est visible que pour les classes filles ("protected")
@@ -26,7 +26,7 @@ public class Tresor {
 
     public String getNature(){
         //renvoie la nature du trésor baguette magique ou sortilege
-        return this.nature;
+        return nature;
     }
 }
 
