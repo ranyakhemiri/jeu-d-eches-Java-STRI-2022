@@ -19,6 +19,7 @@ public class Camps {
 	public int nbCombattant() {
 		return combattants.size();
 	}
+
     
     }
     

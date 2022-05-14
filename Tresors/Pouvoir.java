@@ -7,18 +7,15 @@ public class Pouvoir extends Tresor{
     public int degats;
 
     public Pouvoir(){
-        super("Enchantix");
+        super("baguette");
         this.degats=2;
     }
 
-   
-    }
 
-    public String attaque (Sorciere witch){
-        
+    public String attaque (Sorciere s){
         String texte="";
-        texte= this.proprio.getNom()+" attaque la sorciere "+witch.getNom()+" avec son pouvoir magique.";
-        texte += witch.subirAttaque (this.degats);
+        texte= this.proprio.getNom()+" attaque la sorciere "+s.getNom()+" avec son pouvoir magique.";
+        texte += s.subirAttaque (this.degats);
         return texte;
     }
 }
