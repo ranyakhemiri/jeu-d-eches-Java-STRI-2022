@@ -1,11 +1,12 @@
 package Personnages;
-import Tresors.Baguette;
+import Tresors.Pouvoir;
 
-public class Fee extends EtreVivant {
-    private Baguette baguette; //baguettes magiques, par défaut =1
+public class Fee extends Protagoniste {
+    private Pouvoir pouvoir; //baguettes magiques, par défaut =1
     private int nbBaguettes;
+
     
-    Fee(String nom){
+   public Fee(String nom){
         super(nom);
         //les points de vie sont initialisés à 100pts 
         this.point_vie=100;
