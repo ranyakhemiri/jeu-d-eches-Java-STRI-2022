@@ -2,11 +2,11 @@ package Tresors;
 
 import Personnages.*;
 
-public class Baguette extends Tresor{
+public class Pouvoir extends Tresor{
     protected Fee proprio;
     public int degats;
 
-    public Baguette(){
+    public Pouvoir(){
         super("baguette");
         this.degats=2;
     }
@@ -14,7 +14,7 @@ public class Baguette extends Tresor{
 
     public String attaque (Sorciere s){
         String texte="";
-        texte= this.proprio.getNom()+" attaque la sorciere "+s.getNom()+" avec sa baguette magique.";
+        texte= this.proprio.getNom()+" attaque la sorciere "+s.getNom()+" avec son pouvoir magique.";
         texte += s.subirAttaque (this.degats);
         return texte;
     }

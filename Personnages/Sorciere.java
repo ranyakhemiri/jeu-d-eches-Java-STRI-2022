@@ -1,7 +1,7 @@
 package Personnages;
 import Tresors.Sortilege;
 
-public class Sorciere extends EtreVivant{
+public class Sorciere extends Protagoniste{
 	private Sortilege sortilege;
 	
     public Sorciere(String nom){
