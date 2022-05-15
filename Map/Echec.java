@@ -35,41 +35,41 @@ public class Echec {
         
         
         /*------------pieces-------------*/
-        Protagoniste bloom=new Protagoniste(0, 0, false, "Bloom", ps);
-        Protagoniste flora=new Protagoniste(1, 0, false, "Flora", ps);
-        Protagoniste tecna=new Protagoniste(2, 0, false, "Tecna", ps);
-        Protagoniste musa=new Protagoniste(3, 0, false, "Musa", ps);
-        Protagoniste layla=new Protagoniste(4, 0, false, "Layla", ps);
-        Protagoniste tecnaa=new Protagoniste(5, 0, false, "Tecna", ps);
-        Protagoniste floraa=new Protagoniste(6, 0, false, "Flora", ps);
-        Protagoniste bloomm=new Protagoniste(7, 0, false, "Bloom", ps);
+        Fee bloom=new Fee(0, 0, false, "Bloom", ps);
+        Fee flora=new Fee(1, 0, false, "Flora", ps);
+        Fee tecna=new Fee(2, 0, false, "Tecna", ps);
+        Fee musa=new Fee(3, 0, false, "Musa", ps);
+        Fee layla=new Fee(4, 0, false, "Layla", ps);
+        Fee tecnaa=new Fee(5, 0, false, "Tecna", ps);
+        Fee floraa=new Fee(6, 0, false, "Flora", ps);
+        Fee bloomm=new Fee(7, 0, false, "Bloom", ps);
         
-        Protagoniste stella=new Protagoniste(1, 1, false, "Stella", ps);
-        Protagoniste stella2=new Protagoniste(2, 1, false, "Stella", ps);
-        Protagoniste stella3=new Protagoniste(3, 1, false, "Stella", ps);
-        Protagoniste stella4=new Protagoniste(4, 1, false, "Stella", ps);
-        Protagoniste stella5=new Protagoniste(5, 1, false, "Stella", ps);
-        Protagoniste stella6=new Protagoniste(6, 1, false, "Stella", ps);
-        Protagoniste stella7=new Protagoniste(7, 1, false, "Stella", ps);
-        Protagoniste stella8=new Protagoniste(0, 1, false, "Stella", ps);
+        Fee stella=new Fee(1, 1, false, "Stella", ps);
+        Fee stella2=new Fee(2, 1, false, "Stella", ps);
+        Fee stella3=new Fee(3, 1, false, "Stella", ps);
+        Fee stella4=new Fee(4, 1, false, "Stella", ps);
+        Fee stella5=new Fee(5, 1, false, "Stella", ps);
+        Fee stella6=new Fee(6, 1, false, "Stella", ps);
+        Fee stella7=new Fee(7, 1, false, "Stella", ps);
+        Fee stella8=new Fee(0, 1, false, "Stella", ps);
         
-        Protagoniste icy=new Protagoniste(0, 7, true, "Icy", ps);
-        Protagoniste darcy=new Protagoniste(1, 7, true, "Darcy", ps);
-        Protagoniste strormy=new Protagoniste(2, 7, true, "Stormy", ps);
-        Protagoniste belladone=new Protagoniste(3, 7, true, "Belladone", ps);
-        Protagoniste lysliss=new Protagoniste(4, 7, true, "Lysliss", ps);
-        Protagoniste stormyy=new Protagoniste(5, 7, true, "Stormy", ps);
-        Protagoniste darcyy=new Protagoniste(6, 7, true, "Darcy", ps);
-        Protagoniste icyy=new Protagoniste(7, 7, true, "Icy", ps);
+        Sorciere icy=new Sorciere(0, 7, true, "Icy", ps);
+        Sorciere darcy=new Sorciere(1, 7, true, "Darcy", ps);
+        Sorciere strormy=new Sorciere(2, 7, true, "Stormy", ps);
+        Sorciere belladone=new Sorciere(3, 7, true, "Belladone", ps);
+        Sorciere lysliss=new Sorciere(4, 7, true, "Lysliss", ps);
+        Sorciere stormyy=new Sorciere(5, 7, true, "Stormy", ps);
+        Sorciere darcyy=new Sorciere(6, 7, true, "Darcy", ps);
+        Sorciere icyy=new Sorciere(7, 7, true, "Icy", ps);
         
-        Protagoniste tharma=new Protagoniste(1, 6, true, "Tharma", ps);
-        Protagoniste tharma2=new Protagoniste(2, 6, true, "Tharma", ps);
-        Protagoniste tharma3=new Protagoniste(3, 6, true, "Tharma", ps);
-        Protagoniste tharma4=new Protagoniste(4, 6, true, "Tharma", ps);
-        Protagoniste tharma5=new Protagoniste(5, 6, true, "Tharma", ps);
-        Protagoniste tharma6=new Protagoniste(6, 6, true, "Tharma", ps);
-        Protagoniste tharma7=new Protagoniste(7, 6, true, "Tharma", ps);
-        Protagoniste tharma8=new Protagoniste(0, 6, true, "Tharma", ps);
+        Sorciere tharma=new Sorciere(1, 6, true, "Tharma", ps);
+        Sorciere tharma2=new Sorciere(2, 6, true, "Tharma", ps);
+        Sorciere tharma3=new Sorciere(3, 6, true, "Tharma", ps);
+        Sorciere tharma4=new Sorciere(4, 6, true, "Tharma", ps);
+        Sorciere tharma5=new Sorciere(5, 6, true, "Tharma", ps);
+        Sorciere tharma6=new Sorciere(6, 6, true, "Tharma", ps);
+        Sorciere tharma7=new Sorciere(7, 6, true, "Tharma", ps);
+        Sorciere tharma8=new Sorciere(0, 6, true, "Tharma", ps);
         /*------------pieces-------------*/
         
         

@@ -3,21 +3,35 @@ package Affrontement;
 import java.util.ArrayList;
 import java.util.List;
 
-import Personnages.Protagoniste;
+import Personnages.Fee;
+import Personnages.Sorciere;
 
 public class Camps {
-    private List<Protagoniste> combattants= new ArrayList<>();
+    private List<Sorciere> witch= new ArrayList<>();
+	private List<Fee> fee= new ArrayList<>();
 
-    public void ajouterProtagoniste(Protagoniste combattant) {
-		combattants.add(combattant);
+
+
+    public void ajouterS(Sorciere w) {
+		witch.add(w);
+	}
+	public void ajouterF(Fee f) {
+		fee.add(f);
 	}
 
-	public void supprimerCombattant(Protagoniste combattant) {
-		combattants.remove(combattant);
+	public void supprimerS(Sorciere w) {
+		witch.remove(w);
+	}
+	public void supprimerF(Fee f) {
+		fee.remove(f);
 	}
 
-	public int nbCombattant() {
-		return combattants.size();
+	public int nbSorcieres() {
+		return witch.size();
+	}
+
+	public int nbFees() {
+		return fee.size();
 	}
 
     

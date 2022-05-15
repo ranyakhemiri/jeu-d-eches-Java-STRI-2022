@@ -1,5 +1,7 @@
 package Tresors;
 
+import java.util.Random;
+
 import Personnages.Protagoniste;
 
 public class Tresor {
@@ -28,5 +30,11 @@ public class Tresor {
         //renvoie la nature du trésor baguette magique ou sortilege
         return nature;
     }
+    
+    public Typetresor randtresor(){
+        Typetresor t = Typetresor.values()[new Random().nextInt(Typetresor.values().length)];
+        return t;
+    }
+
 }
 
