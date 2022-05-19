@@ -16,16 +16,16 @@ public abstract class Piece {
 	Piece (final int positionPiece, final Camps campPiece){
 		this.campPiece= campPiece;
 		this.positionPiece= positionPiece;
-		//� completer!!!
+		//TODO à completer!!!
 	}
 	
 	@Override
 	public boolean equals(final Object autre) {
-		if (this==autre) { // on n'a pas besoin de comparer
+		if (this==autre) { // on n'a pas besoin de comparer, c'est le même objet
 			return true;
 		}
 		if (!(autre instanceof Piece)){
-			return false; // on n'a pas besoin de comparer
+			return false; // on n'a pas besoin de comparer, ne peuvent pas être le même objet
 		}
 		final Piece autrePiece= (Piece) autre;
 		return campPiece==autrePiece.campPiece && positionPiece == autrePiece.positionPiece;
@@ -43,7 +43,7 @@ public abstract class Piece {
 		return this.campPiece;
 		}
 	
-	public List<Move> calculerDeplacement(Echec echec) {
+	public List<Move> calculerDeplacement(Echec echec) {//à enlever car  calcule deplacements legals
 		
 		final List<Move> deplacements= new ArrayList<>();
 		int destinationCoordonnee;
@@ -86,7 +86,10 @@ public abstract class Piece {
 		return this.positionPiece;
 	}
 	
+	
+	//méthode qui sert à placer une pièce bougée à sa nouvelle position
 	public abstract Piece bougerPiece(Move deplacement);
+	//TODO implementer la méthode et enlever "absract"
 	
 	
 	public enum typePiece{

@@ -7,12 +7,12 @@ import Protagonistes.Camps;
 import Protagonistes.Piece;
 
 public abstract class Case {
-	/* la classe Case représente une case dans notre échiquier.
-	 Elle sera occupée par une sorcière ou une fée, 
+	/* la classe Case reprÃ©sente une case dans notre Ã©chiquier.
+	 Elle sera occupÃ©e par une sorciÃ¨re ou une fÃ©e, 
 	 ou bien elle sera libre
 	  */
 	
-	//les coordonées d'une case ne changeront jamais 
+	//les coordonÃ©es d'une case ne changeront jamais 
 	//c'est pour cela que cet attribut est "final"
 	protected final int coordonneeCase;
 	
@@ -23,10 +23,10 @@ public abstract class Case {
 		/* initialisation de l'echiquier vide*/ 
 		for (int i=0; i<64; i++) {
 			caseVideMap.put(i,  new CaseVide(i));
-			//génere des cases vides de tailles 8*8 grace a la méthode put
-			//on passe à chaque fois i en paramètres au constructeur de la classe CaseVide 
+			//gÃ©nere des cases vides de tailles 8*8 grace a la mÃ©thode put
+			//on passe Ã  chaque fois i en paramÃ¨tres au constructeur de la classe CaseVide 
 		}		
-		//pour accéder à une case: CASES_VIDES.get(coordonnee) entre 0 et 63
+		//pour accÃ©der Ã  une case: CASES_VIDES.get(coordonnee) entre 0 et 63
 		return caseVideMap;
 	}
 	
@@ -43,14 +43,16 @@ public abstract class Case {
 	
 	
 	Case (int coordCase){
-		/* chaque case a une coordonée entre [0--63]*/
+		/* chaque case a une coordonÃ©e entre [0--63]*/
 		this.coordonneeCase= coordCase;
 	}
 	
 
-
+	public int getCoordonneeCase(){
+		return this.coordonneeCase;
+	}
 	public abstract boolean isCaseOccupee(); 
-	//renvoie si la case est libre où occupée
+	//renvoie si la case est libre oÃ¹ occupÃ©e
 	
 	public abstract Piece getPiece();
 	
@@ -68,7 +70,7 @@ public abstract class Case {
 		}
 		
 		public Piece getPiece() {
-			return null; //car la case n'est pas occupée par un joueur
+			return null; //car la case n'est pas occupÃ©e par un joueur
 		}
 
 		@Override
@@ -77,7 +79,7 @@ public abstract class Case {
 		}
 	}
 	
-	// ************* case occupée **********************
+	// ************* case occupÃ©e **********************
 	public static final class CaseOccupee extends Case{
 		private Piece pieceSurCase;
 		
@@ -88,11 +90,11 @@ public abstract class Case {
 		
 		@Override
 		public String toString() {
-			Camps team= getPiece().getCamp(); //retourne le camp de la pièce qui occupe la case 
+			Camps team= getPiece().getCamp(); //retourne le camp de la piÃ¨ce qui occupe la case 
 			if (team== Camps.SORCIERE) {
 				return getPiece().toString().toLowerCase();
 				}
-			else {//si c'est une fée:
+			else {//si c'est une fÃ©e:
 				return getPiece().toString();
 				}
 			}

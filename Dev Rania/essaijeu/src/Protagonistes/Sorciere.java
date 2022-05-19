@@ -8,23 +8,31 @@ import Echiquier.Echec;
 import Echiquier.Move;
 
 public class Sorciere extends Piece {
-
+	public String nomSorciere;
 	
-	public Sorciere(final int positionPiece, final Camps campsPiece) {
+	public Sorciere(final int positionPiece, final Camps campsPiece, String nomSorciere) {
 		super(positionPiece, campsPiece);
+		this.nomSorciere=nomSorciere;
 	}
 
 
 	@Override
 	public String toString () {
-		return typePiece.Sorciere.toString();
+		if (nomSorciere=="Stormy") {
+			return "S";
+		}
+		if (nomSorciere=="Icy") {
+			return "I";
+		}
+		return nomSorciere;
 	}
 
 
 	@Override
-	public Piece bougerPiece(Move deplacement) {
-		return new Sorciere(deplacement.getDestination(),deplacement.getPieceBougee().getCamp());
+	public Sorciere bougerPiece(Move deplacement) {
+		return new Sorciere(deplacement.getDestination(),deplacement.getPieceBougee().getCamp(), nomSorciere);
 	}
 
 
 }
+

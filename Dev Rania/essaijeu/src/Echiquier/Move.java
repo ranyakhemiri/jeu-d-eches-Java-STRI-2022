@@ -3,13 +3,13 @@ package Echiquier;
 import Echiquier.Echec.Builder;
 import Protagonistes.Piece;
 
-public abstract class Move {
+public class Move {
 
 	protected final Echec echec; //l'echiquier sur lequel les joueurs bougent
 	protected final Piece pieceBougee; 
 	protected final int destination; 
 	
-	private Move (Echec echec, Piece piece, int dest){
+	Move (Echec echec, Piece piece, int dest){
 		this.echec=echec;
 		this.pieceBougee=piece;
 		this.destination=dest;
@@ -32,33 +32,43 @@ public abstract class Move {
 			return false;
 		}
 		final Move autreDeplacement= (Move) autre;
-		return this.pieceBougee==autreDeplacement.pieceBougee 
-				&& this.destination==autreDeplacement.destination;
+		return this.pieceBougee.equals(autreDeplacement.getPieceBougee()) 
+				&& this.destination==autreDeplacement.destination
+				&& this.getCoordonneeActuel()==autreDeplacement.getCoordonneeActuel();
 	}
 	
+	public int getCoordonneeActuel() {
+		//retourne la coordonnée de la pièce AVANT le déplacement
+		return this.pieceBougee.getPiecePosition();
+	}
+	
+	//getter de la pièce bougée 
 	public Piece getPieceBougee() {
 		return this.pieceBougee;
 	}
+	
+	//getter de la destination de la pièce bougée
 	public int getDestination() {
+		//retourne la coordonnée de la pièce APRES le déplacement
 		return this.destination;
 	}
 	
 	public Echec executer() {
 		final Echec.Builder builder= new Builder(); //nouvel echiquier
-		//boucle de toutes les pi�ces du joeurs :
+		//boucle de toutes les pièces du joueurs :
 		for (final Piece piece: this.echec.getJoueurActuel().getPiecesPresentes()) {
-			if (!this.pieceBougee.equals(piece)) {//sauf la pi�ce boug�e
+			if (!this.pieceBougee.equals(piece)) {//sauf la pièce bougée
 				builder.setPiece(piece);//on les copie dans le nouveul echiquier
 			}
 		}
-		//aucune pi�ces de le l'autre joeur ne va bouger � cet �tape
+		//aucune pièces de le l'autre joueur ne va bouger à cette étape
 		//il suffit de les recopier toutes: 
 		for (final Piece piece: this.echec.getJoueurActuel().getEnnemi().getPiecesPresentes()) {
 			builder.setPiece(piece);
 		}
-		//on bouge la pi�ce boug�e par le joueur: 
+		//on copie la pièce bougée par le joueur: 
 		builder.setPiece(this.pieceBougee.bougerPiece(this));
-		//on donne le prochain tour au camp adversaire (� l'autre joueur)
+		//on donne le prochain tour au camp adversaire (à l'autre joueur)
 		builder.setProchainTour(this.echec.getJoueurActuel().getEnnemi().getCamp());
 		return builder.build();
 	}
@@ -69,7 +79,6 @@ public abstract class Move {
 		this.pieceBougee=null;
 	}
 	
-	public abstract boolean isAttack();
 	
 	/*********** deplacement normal ***********/
 	public static class Deplacement extends Move{
@@ -102,7 +111,7 @@ public abstract class Move {
 		 
 		 @Override
 		 public Echec executer() {
-			 /*� completer*/
+			 /*à completer*/
 			 return null;
 		 }
 		 
@@ -124,8 +133,48 @@ public abstract class Move {
 					 && getPieceAttaquee().equals(autreAttaque.getPieceAttaquee());
 		 }
 	}
+	
+	/* /*********** classe qui crée les déplacements ***********
 
+	public static class MoveFactory {
+		
+		private MoveFactory() {
+			//cette classe n'est pas instanciable
+			throw new RuntimeException ("Vous ne pouvez pas instancier cette classe");
+		}
+		
+		public static Move creerMove (final Echec echec,
+									final int coordonneeActuel,
+									final int coordonneeDestination) {
+			for (final Move deplacement : echec.getMoves()) {
+				if (deplacement.getCoordonneeActuel() ==coordonneeActuel &&
+					deplacement.getDestination() ==coordonneeDestination){
+						return deplacement;
+					}
+			}
+			return null;
+		}
+	}*/
 	
 	
+	/*********** enum qui retourne l'état des déplacements ***********/
+	public enum MoveStatus {
+
+        DONE {
+            @Override
+            public boolean isDone() {
+                return true;
+            }
+        },        
+        FAIL{
+            @Override
+            public boolean isDone() {
+                return false;
+            }
+        };
+        public abstract boolean isDone();
+	}
 	
 }
+	
+

@@ -8,19 +8,32 @@ import Protagonistes.Piece.typePiece;
 
 public class Fee extends Piece{
 	
-	public Fee(final int positionPiece, final Camps campsPiece) {
+	public String nomFee;
+	
+	public Fee(final int positionPiece, final Camps campsPiece,final String nomFee) {
 		super(positionPiece, campsPiece);
+		this.nomFee=nomFee;
 	}
 
 	
 	@Override
 	public String toString () {
-		return typePiece.Fee.toString();
+		if (nomFee=="Stella")
+			return "S";
+		if (nomFee=="Musa") {
+			return "M";
+		}
+		if (nomFee=="Flora")
+			return "F";
+		if (nomFee=="Bloom") {
+			return "B";
+		}
+		return nomFee;
 	}
 
 
 	@Override
-	public Piece bougerPiece(Move deplacement) {
-		return new Fee(deplacement.getDestination(),deplacement.getPieceBougee().getCamp());
+	public Fee bougerPiece(Move deplacement) {
+		return new Fee(deplacement.getDestination(),deplacement.getPieceBougee().getCamp(), nomFee);
 	}
 }

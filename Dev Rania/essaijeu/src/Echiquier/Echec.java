@@ -3,9 +3,12 @@ package Echiquier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import Joueurs.Joueur;
 import Joueurs.JoueurFee;
@@ -16,9 +19,10 @@ import Protagonistes.Piece;
 import Protagonistes.Sorciere;
 
 public class Echec {
-	//l'echiquier est composé de plusieurs cases: 
+	
+	//l'echiquier est composÃ© de plusieurs cases: 
 	private final List<Case> echiquier;
-	//attributs qui nous permettent de suivre les joueurs présents dans le jeux de chaque champ
+	//attributs qui nous permettent de suivre les joueurs prÃ©sents dans le jeux de chaque champ
 	private final Collection<Piece> joueursSorcieres;
 	private final Collection<Piece> joueursFees;
 	
@@ -26,10 +30,11 @@ public class Echec {
 	private JoueurSorciere joueurSorciere;
 	private Joueur joueurActuel;
 	
-	private Echec (Builder builder) {
+	
+	private Echec (final Builder builder) {
 		this.echiquier= creerEchiquier(builder);
-		this.joueursFees=calculerPieces(this.echiquier, Camps.FEE);
-		this.joueursSorcieres=calculerPieces(this.echiquier, Camps.SORCIERE);
+		this.joueursFees=calculerPiecesPresentes(builder, Camps.FEE);
+		this.joueursSorcieres=calculerPiecesPresentes(builder, Camps.SORCIERE);
 		
 		/* nous permet de suivre les mouvements des joueurs*/
 		final Collection <Move> sorciereDeplacements= calculerDeplacement(this.joueursSorcieres);
@@ -46,11 +51,21 @@ public class Echec {
 		for (int i=0; i<64; i++) {
 			final String texteCase= this.echiquier.get(i).toString();
 			builder.append(String.format("%3s", texteCase));
-			if ((i+1)%8==0) /*a chaque fois qu'on arrive à la fin d'une colonne: */{
+			if ((i+1)%8==0) /*a chaque fois qu'on arrive Ã  la fin d'une colonne: */{
 				builder.append("\n");
 			}
 		}
 		return builder.toString();
+	}
+	
+	public Case getCase(int coordonneeCase) {
+		/* mÃ©thode qui retourne la coordonnÃ©e d'une case */
+		return echiquier.get(coordonneeCase);
+	}
+	
+	public Collection<Piece> getPieces(){
+		  return Stream.concat(this.joueursFees.stream(),
+                  this.joueursSorcieres.stream()).collect(Collectors.toList());
 	}
 	
 	public Collection<Piece> getPiecesFees(){
@@ -73,101 +88,95 @@ public class Echec {
 		return this.joueurActuel;
 	}
 
+		
+    
 	private Collection<Move> calculerDeplacement(final Collection<Piece> pieces){
 		final List<Move> deplacements= new ArrayList();
-		// parcourir les pièces d'un camp présentes sur l'échiquier:
-		for (final Piece piece: pieces) {
-			//ajouteur le déplacement de chaque joueur:
-			deplacements.addAll(piece.calculerDeplacement(this));
+		// parcourir les piÃ¨ces d'un camp prÃ©sentes sur l'Ã©chiquier:
+		for (final Piece piece: pieces) {	
+				//chaque piÃ¨ce peut se dÃ©placer Ã  la position "i"
+				deplacements.addAll(piece.calculerDeplacement(this));
+				//on incrÃ©mente i et on parcours toutes les piÃ¨ces Ã  nouveau
+				 
 		}
 		return deplacements;
 	}
 	
 	
-	private static Collection<Piece> calculerPieces(List<Case> echiquier, Camps camp) {
-		/* méthode qui nous permet de suivre les pièces présentes sur l'échiquier de chaque camp*/
-		final List<Piece> piecesPresentes= new ArrayList<>();
-		
-		//parcours des cases de l'échiquier: 
-		for (final Case cases : echiquier) {
-			//si la case est occupée:
-			if (cases.isCaseOccupee()) {
-				final Piece piece= cases.getPiece(); //on récupère la pièce occupant la case
-				if (piece.getCamp()==camp) { 
-					piecesPresentes.add(piece);// on l'ajoute aux pièces présentes sur l'échiquier selon son camp
-				}}
-		}
-		return piecesPresentes;
+	private static Collection<Piece> calculerPiecesPresentes(Builder builder, Camps camp) {
+		/* mÃ©thode qui nous permet de suivre les piÃ¨ces prÃ©sentes sur l'Ã©chiquier de chaque camp*/
+		 return builder.boardConfig.values().stream() //parcours de la configuration de l'Ã©chiquier
+				 //qui associe numÃ©ro de case et piÃ¨ce
+	               .filter(piece -> piece.getCamp() == camp) //on rÃ©cupÃ¨re les piÃ¨ces ensuite leur camps
+	               .collect(Collectors.toList());
 	}
 	
-	
-	public Case getCase(int coordonneeCase) {
-		/* méthode qui retourne la coordonnée d'une case */
-		return echiquier.get(coordonneeCase);
-	}
 	
 	private static List<Case> creerEchiquier(final Builder builder){
 		final Case[] cases= new Case[64]; //tableau de cases
-		//parcours de toutes les cases de l'échiquier de taille 8*8
+		//parcours de toutes les cases de l'Ã©chiquier de taille 8*8
 		for (int i=0; i<64; i++) {
-			//get(i): nous permet de récuperer la pièce associée à cette case depuis notre builder
-			//creerCase permet de créer une nouvelle case et l'associer à un joueur
-			cases[i]= Case.creerCase(i, builder.configEchec.get(i));
+			//get(i): nous permet de rÃ©cuperer la piÃ¨ce associÃ©e Ã  cette case depuis notre builder
+			//creerCase permet de crÃ©er une nouvelle case et l'associer Ã  un joueur
+			cases[i]= Case.creerCase(i, builder.boardConfig.get(i));
 		}
 		return Arrays.asList(cases);
 	}
 	
 	public static Echec initialiserEchiquier() {
-		/*cette méthode va créer la disposition initial des pièces sur l'échiquier*/
+		/*cette mÃ©thode va crÃ©er la disposition initial des piÃ¨ces sur l'Ã©chiquier*/
 		final Builder builder = new Builder();
 		/********** Camps Sorcieres **********/
-		builder.setPiece(new Sorciere(0,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(1,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(2,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(3,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(4,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(5,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(6,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(7,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(8,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(9,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(10,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(11,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(12,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(13,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(14,Camps.SORCIERE));
-		builder.setPiece(new Sorciere(15,Camps.SORCIERE));
+		builder.setPiece(new Sorciere(0,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(1,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(2,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(3,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(4,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(5,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(6,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(7,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(8,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(9,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(10,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(11,Camps.SORCIERE,"Stormy"));
+		builder.setPiece(new Sorciere(12,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(13,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(14,Camps.SORCIERE,"Icy"));
+		builder.setPiece(new Sorciere(15,Camps.SORCIERE,"Icy"));
 
 		/********** Camps Fees **********/
-		builder.setPiece(new Fee(48,Camps.FEE));
-		builder.setPiece(new Fee(49,Camps.FEE));
-		builder.setPiece(new Fee(50,Camps.FEE));
-		builder.setPiece(new Fee(51,Camps.FEE));
-		builder.setPiece(new Fee(52,Camps.FEE));
-		builder.setPiece(new Fee(53,Camps.FEE));
-		builder.setPiece(new Fee(54,Camps.FEE));
-		builder.setPiece(new Fee(55,Camps.FEE));
-		builder.setPiece(new Fee(56,Camps.FEE));
-		builder.setPiece(new Fee(57,Camps.FEE));
-		builder.setPiece(new Fee(58,Camps.FEE));
-		builder.setPiece(new Fee(59,Camps.FEE));
-		builder.setPiece(new Fee(60,Camps.FEE));
-		builder.setPiece(new Fee(61,Camps.FEE));
-		builder.setPiece(new Fee(62,Camps.FEE));
-		builder.setPiece(new Fee(63,Camps.FEE));
+		builder.setPiece(new Fee(48,Camps.FEE,"Stella"));
+		builder.setPiece(new Fee(49,Camps.FEE,"Stella"));
+		builder.setPiece(new Fee(50,Camps.FEE, "Musa"));
+		builder.setPiece(new Fee(51,Camps.FEE,"Musa"));
+		builder.setPiece(new Fee(52,Camps.FEE,"Flora"));
+		builder.setPiece(new Fee(53,Camps.FEE,"Flora"));
+		builder.setPiece(new Fee(54,Camps.FEE,"Bloom"));
+		builder.setPiece(new Fee(55,Camps.FEE,"Bloom"));
+		builder.setPiece(new Fee(56,Camps.FEE,"Stella"));
+		builder.setPiece(new Fee(57,Camps.FEE,"Stella"));
+		builder.setPiece(new Fee(58,Camps.FEE,"Musa"));
+		builder.setPiece(new Fee(59,Camps.FEE,"Musa"));
+		builder.setPiece(new Fee(60,Camps.FEE,"Flora"));
+		builder.setPiece(new Fee(61,Camps.FEE,"Flora"));
+		builder.setPiece(new Fee(62,Camps.FEE,"Bloom"));
+		builder.setPiece(new Fee(63,Camps.FEE,"Bloom"));
 		return builder.build();
 	}
 	
+
+/* ************************* Classe BUILDER ********************** */
 	public static class Builder {
-		Map<Integer, Piece> configEchec;
-		Camps prochainTour= Camps.FEE;
+		Map<Integer, Piece> boardConfig;
+		Camps prochainTour= Camps.FEE;//TODO
+        Move transitionMove;
 		
 		public Builder() {
-			this.configEchec= new HashMap<>();
+			this.boardConfig= new HashMap<>();
 		}
 		
 		public Builder setPiece (final Piece piece) {
-			this.configEchec.put(piece.getPiecePosition(), piece);
+			this.boardConfig.put(piece.getPiecePosition(), piece);
 			return this;
 		}
 		
@@ -181,3 +190,5 @@ public class Echec {
 	}
 
 }
+
+

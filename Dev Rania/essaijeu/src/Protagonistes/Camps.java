@@ -5,7 +5,7 @@ import Joueurs.JoueurFee;
 import Joueurs.JoueurSorciere;
 
 public enum Camps {
-	SORCIERE{
+	SORCIERE(){
 		public boolean isSorciere() {
 			return true;
 		}
@@ -14,10 +14,14 @@ public enum Camps {
 		}
 		@Override
 		public Joueur choisirJoueur(JoueurFee joueurFee, JoueurSorciere joueurSorciere) {
-			return joueurSorciere;
-		}
+			return joueurSorciere;}
+		
+		@Override
+		public String toString() {
+		    return "Sorciere";
+		     }
 	},
-	FEE{
+	FEE(){
 		public boolean isFee() {
 			return false;
 		}
@@ -28,6 +32,10 @@ public enum Camps {
 		public Joueur choisirJoueur(JoueurFee joueurFee, JoueurSorciere joueurSorciere) {
 			return joueurFee;
 		}
+		@Override
+		public String toString() {
+		    return "Fee";
+		   }
 	};
 
 	public abstract boolean isFee();
