@@ -5,7 +5,7 @@ import java.util.Random;
 import protagonistes.*;
 import tresors.*;
 
-public class Grille {
+public class Grille{
 	private Case[] map = new Case[64];
 
 	public Grille() {

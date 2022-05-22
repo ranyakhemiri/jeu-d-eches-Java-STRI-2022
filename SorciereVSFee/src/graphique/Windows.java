@@ -2,18 +2,20 @@ package graphique;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
+
+import maps.Case;
 import maps.Grille;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JToggleButton;
 
 import javax.swing.JTextArea;
 
@@ -58,35 +60,28 @@ public class Windows extends JFrame{
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(9,7));
 		panel.setBounds(10, 98, 764, 652);
-		JToggleButton[] Jcase = new JToggleButton[64];
+		Case[] Jcase = new Case[64];
+		ButtonGroup bg = new ButtonGroup(); 
 		for (int i = 0;i<64;i++) {
 			ImageIcon icon = new ImageIcon("art/"+grille.getMap(i).getOccupant().getSymbole()+".png");
-			JToggleButton Case = new JToggleButton();
+			Case Case = new Case(i,grille.getMap(i).getOccupant());
 			Case.setIcon(icon);
 			if (switch_int()%2==0)
 			{
 				Case.setBackground(new Color(0,86,27));
 			}
 			else Case.setBackground(new Color(253,108,158));
-			
-			panel.add(Case);
 			Jcase[i] = Case;
+			bg.add(Case);
+			panel.add(Case);
 			Case.addActionListener(new ActionListener() {
-				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					int count = 0;
-					for (int y = 0;y<64;y++) {
-						if (Jcase[y].isSelected()) {
-							count++;
-							System.out.println(grille.getMap(y).getPosition());
-						}
-						if (count > 2) {
-							for (int z = 0;z<64;z++) {
-								Jcase[y].setSelected(false);
+						for (int y=0;y<64;y++) {
+							if (Jcase[y].isSelected()) {
+								setCase_selectionee(Jcase[y]);
 							}
 						}
-					}
 					}
 				}
 			);
@@ -103,6 +98,17 @@ public class Windows extends JFrame{
 		}
 		return integer;
 	}
+	
+	public Case case_selectionee;
+	
+	public void setCase_selectionee(Case case_selectionee) {
+		this.case_selectionee = case_selectionee;
+	}
+
+	public Case getCase_selectionee() {
+		return case_selectionee;
+	}
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable(){
 			public void run() {
