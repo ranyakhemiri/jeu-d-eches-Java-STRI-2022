@@ -2,9 +2,8 @@ package protagonistes;
 
 public class Bloom extends Fee{
 	public Bloom() {
-		super("Bloom","Feu");
+		super("Bloom");
 		this.Symbole = "FB";
-		this.TypeFort = "Glace";
 	}
 	public String getSymbole() {
 		return Symbole;

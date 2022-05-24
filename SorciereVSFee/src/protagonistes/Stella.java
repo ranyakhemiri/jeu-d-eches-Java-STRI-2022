@@ -2,9 +2,8 @@ package protagonistes;
 
 public class Stella extends Fee{
 	public Stella() {
-		super("Stella","Lumiere");
+		super("Stella");
 		this.Symbole = "FS";
-		this.TypeFort = "Glace";
 	}
 	public String getSymbole() {
 		return Symbole;

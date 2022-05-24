@@ -30,7 +30,7 @@ public class Windows extends JFrame{
 	}
 
 	public Windows() {
-		setTitle("JWinx");
+		setTitle("JWinx");  
 		setSize(800,800);
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

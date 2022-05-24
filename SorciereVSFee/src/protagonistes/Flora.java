@@ -2,9 +2,8 @@ package protagonistes;
 
 public class Flora extends Fee{
 	public Flora() {
-		super("Flora","Plante");
+		super("Flora");
 		this.Symbole = "FF";
-		this.TypeFort = "Vent";
 	}
 	public String getSymbole() {
 		return Symbole;
